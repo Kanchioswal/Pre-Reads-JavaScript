@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>JavaScript</title>
+  </head>
+  <body>
+    <h1>High Order Functions</h1>
+
+  <h3>Demo for Map Function by multiplying each element by 100</h3>
+      <h3 id="mapfun"></h3><br>
+      <h3>Demo for forEach Loop by adding each number with 10</h3>
+        <h3 id="foreachfun"></h3><br>
+        <h3>Demo for Filter Function by finding all the odd number from the list</h3>
+        <h3 id="filterfun"></h3><br>
+        <h3>Demo for Reduce Function by finding sum of all elements in the array</h3>
+          <h3 id="reducefun"></h3><br>
+
+      <script>
+
+          const final_list = [10,9,8,20,30,90];
+           const mapArray = map(final_list,multiplyByHundred);
+           document.getElementById("mapfun").innerHTML = mapArray;
+
+           function map(list,callbackfn)
+             {
+               const a = [];
+               for(var i=0;i<list.length;i++)
+               {
+                 const res = callbackfn(list[i],i,list);
+
+               a.push(res);
+             }
+             return a;
+           }
+
+
+             function multiplyByHundred(a)
+               {
+                   return a*100;
+                }
+
+                forEach(final_list,addTen);
+                document.getElementById("foreachfun").innerHTML = final_list;
+
+                function forEach(arr, forEachFunc) {
+                   for(let i=0;i<arr.length;i++)
+                      forEachFunc(arr[i], i, arr);
+                }
+
+                function addTen(item, index, arr) {
+                   arr[index] = item + 10;
+                }
+
+
+                const filterArray = filter(final_list,isOdd);
+                document.getElementById("filterfun").innerHTML=filterArray;
+                function filter(filterarr,filterfn)
+                {
+                  let a=[];
+                  for(var i =0;i<filterarr.length;i++)
+                  {
+                    var res=filterfn(filterarr[i],i,filterarr);
+                    if(res)//push the current element if result is true.
+                    {
+                    a.push(filterarr[i]);
+                  }
+                  }
+                  return a;
+                }
+                function isOdd(num)
+                {
+                  if(num%2==1)
+                  {
+                    return true;
+                  }
+                  else {
+                    return false;
+                  }
+                }
+                const reduceArray = reduce(final_list,sumElement);
+               document.getElementById("reducefun").innerHTML = reduceArray;
+
+
+               function reduce(array,reducefn,initialValue)
+               {
+                 var a=[];
+                 var accumulator;
+                 var correctValue;
+                 if(initialValue===undefined)
+                 {
+                   accumulator=0;
+                 }
+                 else {
+                   {
+                     accumulator=array[0];
+                   }
+                 }
+                 for(var a=0;a<array.length;a++)
+                 {
+
+                   accumulator=reducefn(accumulator,array[a]);
+                 }
+                 return accumulator;
+
+               }
+               function sumElement(total,arr)
+               {
+                 return total+arr;
+               }
+
+</script>
+</body>
+<html>
